@@ -53,7 +53,7 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $input['user_id'] = Auth::id(); //現在ログインしているユーザーを（のID取得）を取得
+        $input['user_id'] = Auth::id();
         $this->todo->fill($input)->save(); //INSERT INTO todos (title) VALUE (入力内容)
         return redirect()->to('todo.index');
     }
