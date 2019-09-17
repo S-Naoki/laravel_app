@@ -3,16 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 //この Model を継承したfileというのが DB への操作を可能にするfileとなります。
 //$fillableには複数代入したいモデルの属性(DBで言う所のカラム名)を指定
 
 class Todo extends Model
 {
+    use SoftDeletes;
+    
     protected $fillable = [
         'title',
         'user_id'
     ];
+    protected $dates = ['deleted_at'];
     //user_idをもとにuserのtodo情報を取得している。
     public function getByUserId($id)
     {
